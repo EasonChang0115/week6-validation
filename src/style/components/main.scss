@@ -4,6 +4,9 @@
   width: 100%;
   max-width: 460px;
   margin: 0 auto;
+  [class^="step"] {
+    margin-top: 25px;
+  }
 }
 
 .top-bar {
@@ -14,7 +17,7 @@
 
 .schedule-bar {
   width: 100%;
-  margin: 60px auto;
+  margin: 60px auto 40px auto;
   .line {
     width: 240px;
     height: 2px;
@@ -68,6 +71,84 @@
       }
       &:nth-child(4) {
         left: 232px;
+      }
+    }
+  }
+}
+
+.step-three-form {
+  .Upload-btn{
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-blue;
+    border: solid 2px $color-blue;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    user-select: none;
+    i {
+      font-size: 45px;
+      width: 58px;
+      height: 45px;
+      margin-right: 20px;
+    }
+    .img-notice {
+      font-size: 14px;
+    }
+  }
+  .img-alert {
+    font-size: 20px;
+    text-align: center;
+    color: $color-white;
+    padding: 14px 25px;
+    background-color: $color-origin;
+    border-radius: 8px;
+    i {
+      margin-right: 8px;
+    }
+  }
+  input[type="file"] {
+    display: none;
+  }
+  .imgs-block {
+    margin: 24px 0px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    .img-block {
+      width: 140px;
+      height: 140px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      margin: 0 10px;
+      border-radius: 8px;
+      overflow: hidden;
+      &:hover {
+        .delete {
+          bottom: 0px;
+        }
+      }
+      .delete {
+        width: 100%;
+        height: 52px;
+        position: absolute;
+        bottom: -52px;
+        background-color: $color-blue;
+        font-size: 20px;
+        color: $color-white;
+        text-align: center;
+        line-height: 52px;
+        transition: .3s;
+        cursor: pointer;
+      }
+      &:last-child {
+        margin-right: 0px;
+      }
+      &:first-child {
+        margin-left: 0px;
       }
     }
   }

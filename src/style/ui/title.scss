@@ -1,20 +1,31 @@
-
 .title {
   font-size: 48px;
   font-weight: 300;
+  padding: 1px;
+  text-align: center;
 }
 
 .sub-title {
   font-size: 24px;
   font-weight: 300;
+  text-align: center;
 }
 
 .form-title {
+  display: inline-block;
   font-size: 20px;
   font-weight: 400;
+  margin-bottom: 8px;
 }
 
 .label {
   font-size: 14px;
-  text-align: 400;
+  font-weight: 400;
 }
+
+.notice {
+  margin-left: 4px;
+  font-size: 16px;
+  font-weight: 300;
+}
+

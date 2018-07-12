@@ -9,14 +9,11 @@
 
 .row {
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
-  margin-bottom: 10px;
   [class^='col'] {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
   }
   .col-1{
     width: calc(100% / 12);

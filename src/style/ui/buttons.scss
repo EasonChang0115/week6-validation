@@ -1,0 +1,22 @@
+button {
+  &.btn{
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: .3s;
+    &.submit {
+      font-size: 20px;
+      color: $color-white;
+      line-height: 25px;
+      background-color: $color-skyblue;
+      border: 2px solid $color-skyblue;
+      border-radius: 8px;
+      &:hover {
+        background-color: $color-blue;
+      }
+    }
+  }
+}

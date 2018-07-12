@@ -5,7 +5,20 @@ Vue.use(Vuex);
 
 // 在各vue的組件中 用computed來接state裡的屬性值
 const state = {
-  night: false
+  nowStep: 3,
+  steps: [false, false, false, false],
+  account: '',
+  password: '',
+  confirmPassword: '',
+  name: '',
+  phone: '',
+  birthYear: 1990,
+  birthMonth: 1,
+  birthDate: 1,
+  addressCity: '台北市',
+  addressDist: '北投區',
+  addressDetail: '',
+  imgFile: []
 };
 
 // store裡面的computed
@@ -25,7 +38,52 @@ const actions = {
 // 唯一可以改變state的方法
 // 只能做同步操作
 const mutations = {
-
+  completeStep(state, { step }) {
+    state.steps[step - 1] = true;
+  },
+  changeStep(state, { step }) {
+    state.nowStep = step;
+  },
+  onAccountChange(state, { value }) {
+    state.account = value;
+  },
+  onPasswordChange(state, { value }) {
+    state.password = value;
+  },
+  onConfirmPasswordChange(state, { value }) {
+    state.confirmPassword = value;
+  },
+  onNameChange(state, { value }) {
+    state.name = value;
+  },
+  onPhoneChange(state, { value }) {
+    state.phone = value;
+  },
+  onBirthYearChange(state, { value }) {
+    state.birthYear = value;
+  },
+  onBirthMonthChange(state, { value }) {
+    state.birthMonth = value;
+  },
+  onBirthDateChange(state, { value }) {
+    state.birthDate = value;
+  },
+  onAddressCityChange(state, { value }) {
+    state.addressCity = value;
+  },
+  onAddressDistChange(state, { value }) {
+    state.addressDist = value;
+  },
+  onAddressDetailChange(state, { value }) {
+    state.addressDetail = value;
+  },
+  addImage(state, { img }) {
+    if (state.imgFile.length === 3) return;
+    state.imgFile.push(img);
+  },
+  removeImage(state, {index}) {
+    state.imgFile.splice(index, 1);
+  }
 };
 
 export default new Vuex.Store({
