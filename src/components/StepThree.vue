@@ -91,6 +91,7 @@ export default {
     },
     imageLoaded(evt) {
       this.addImage({img: evt.target.result});
+      document.querySelector('#image-file').value = '';
     },
     validateImage(img, index) {
       var image = new Image();
@@ -111,7 +112,7 @@ export default {
       this.$data[type] = true;
       setTimeout(() => {
         this.$data[type] = false;
-      }, 0);
+      }, 50);
     }
   }
 };
