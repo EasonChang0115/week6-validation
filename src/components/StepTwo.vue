@@ -1,5 +1,5 @@
 <template>
-  <div class="step-two slideInRight">
+  <div class="step-three slideInRight">
     <div class="title">General Infomation</div>
     <div class="sub-title">Tell us who you are!</div>
     <form @submit="stepTwoSubmit" class="step-two-form">

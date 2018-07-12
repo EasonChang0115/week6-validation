@@ -16,6 +16,8 @@
             <div class="alert">INVALID EMAIL</div>
           </div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-12">
           <label class="form-title" for="password">Password</label>
           <div :class="passwordError ? 'input-box error' : 'input-box'">
@@ -29,6 +31,8 @@
             <div class="alert">MINIMUM 8 CHARACTERS</div>
           </div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-12">
           <label class="form-title" for="confirm-password">Confirm Password</label>
           <div :class="confirmPasswordError ? 'input-box error' : 'input-box'">
@@ -112,7 +116,7 @@ export default {
       this.$data[type] = true;
       setTimeout(() => {
         this.$data[type] = false;
-      }, 300);
+      }, 1500);
     },
     stepOneSubmit(e) {
       e.preventDefault();

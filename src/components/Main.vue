@@ -2,11 +2,13 @@
   <div class="main">
     <div class="top-bar"></div>
     <div class="schedule-bar">
-      <div class="line">
-        <div class="circle" :class="nowStep === 1 ? 'active' : steps[0] ? 'done' : '' "></div>
-        <div class="circle" :class="nowStep === 2 ? 'active' : steps[1] ? 'done' : '' "></div>
-        <div class="circle" :class="nowStep === 3 ? 'active' : steps[2] ? 'done' : '' "></div>
-        <div class="circle" :class="nowStep === 4 ? 'active' : steps[3] ? 'done' : '' "></div>
+      <div class="outline">
+        <div class="line" :style="{width: `${doneLength * 80}px`}">
+          <div class="circle" :class="nowStep === 1 ? 'active' : steps[0].type ? 'done' : '' "></div>
+          <div class="circle" :class="nowStep === 2 ? 'active' : steps[1].type ? 'done' : '' "></div>
+          <div class="circle" :class="nowStep === 3 ? 'active' : steps[2].type ? 'done' : '' "></div>
+          <div class="circle" :class="nowStep === 4 ? 'active' : steps[3].type ? 'done' : '' "></div>
+        </div>
       </div>
     </div>
     <keep-alive>
@@ -19,6 +21,7 @@
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import StepThree from './StepThree';
+import StepFour from './StepFour';
 import { mapState } from 'vuex';
 
 export default {
@@ -26,19 +29,28 @@ export default {
   components: {
     StepOne,
     StepTwo,
-    StepThree
+    StepThree,
+    StepFour
   },
   data() {
     return {
       stepMap: {
         1: 'StepOne',
         2: 'StepTwo',
-        3: 'StepThree'
+        3: 'StepThree',
+        4: 'StepFour'
       }
     };
   },
   computed: {
-    ...mapState(['nowStep', 'steps'])
+    ...mapState(['nowStep', 'steps']),
+    doneLength() {
+      let length = 0;
+      this.steps.forEach(item => {
+        if (item.type) length += 1;
+      });
+      return length;
+    }
   }
 };
 </script>

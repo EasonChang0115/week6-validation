@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 // 在各vue的組件中 用computed來接state裡的屬性值
 const state = {
-  nowStep: 3,
-  steps: [false, false, false, false],
+  nowStep: 1,
+  steps: [{type: false}, {type: false}, {type: false}, {type: false}],
   account: '',
   password: '',
   confirmPassword: '',
@@ -39,7 +39,7 @@ const actions = {
 // 只能做同步操作
 const mutations = {
   completeStep(state, { step }) {
-    state.steps[step - 1] = true;
+    state.steps[step - 1].type = true;
   },
   changeStep(state, { step }) {
     state.nowStep = step;

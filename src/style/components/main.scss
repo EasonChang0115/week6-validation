@@ -18,11 +18,17 @@
 .schedule-bar {
   width: 100%;
   margin: 60px auto 40px auto;
-  .line {
+  .outline {
     width: 240px;
     height: 2px;
     margin: 0 auto;
     background-color: $color-skyblue;
+  }
+  .line {
+    width: 0;
+    height: 100%;
+    background-color: $color-blue;
+    transition: .3s;
     .circle {
       width: 16px;
       height: 16px;
