@@ -28,7 +28,7 @@
     width: 0;
     height: 100%;
     background-color: $color-blue;
-    transition: .3s;
+    transition: 1.5s;
     .circle {
       width: 16px;
       height: 16px;
@@ -37,6 +37,7 @@
       background-color: $color-white;
       position: absolute;
       top: -8px;
+      transition: 1.5s;
       &.done {
         border-color: $color-blue;
         background-color: $color-blue;
