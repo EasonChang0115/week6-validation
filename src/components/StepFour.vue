@@ -9,21 +9,26 @@
           <div :class="cardError ? 'input-box error' : 'input-box'">
             <input
               id="card"
+              v-model="localCardName"
               type="text"
               placeholder="1234 5678 9012 3456">
             <i class="fas fa-exclamation-triangle"></i>
-            <div class="alert">INVALID EMAIL</div>
+            <i class="fab fa-cc-visa"></i>
+            <div class="alert">INVALID NUMBER</div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-6 m-right">
           <label class="form-title" for="cardholderName">Cardholder Name</label>
-          <div class="input-box">
+          <div :class="holdNameError ? 'input-box error' : 'input-box'">
             <input
               id="cardholderName"
+              v-model="localHoldName"
               type="text"
               placeholder="EXAMPLE NAME">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="alert left">REQUIRED FILED</div>
           </div>
         </div>
         <div class="col-6">
@@ -32,10 +37,11 @@
             <input
               id="bankName"
               type="text"
+              v-model="localBankName"
               placeholder="EXAMPLE BANK"
               autocomplete='tel'>
             <i class="fas fa-exclamation-triangle"></i>
-            <div class="alert two">NUMBERS ONLY</div>
+            <div class="alert two">REQUIRED FILED</div>
           </div>
         </div>
       </div>
@@ -49,22 +55,39 @@
       </div>
       <div class="row">
         <div class="col-4 m-right">
-          <div class="input-box">
+          <div :class="CVVError ? 'input-box error' : 'input-box'">
             <input
               id="cvv"
+              v-model="localCVV"
               type="text"
               placeholder="123">
+              <i class="fas fa-exclamation-triangle"></i>
+              <div class="alert">INVALID VALUE</div>
           </div>
         </div>
         <div class="col-4 m-right">
-          <select name="expireMonth">
-            <option>123</option>
-          </select>
+          <div :class="expireMMError ? 'input-box error' : 'input-box'">
+            <select name="expireMonth"
+              :style="{color: localExpireDateMM === 'MM' ? 'gray' : 'black'}"
+              v-model="localExpireDateMM">
+              <option>MM</option>
+              <option v-for="i in 12" :key="i">{{ i }}</option>
+            </select>
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="alert three">INVALID VALUE</div>
+          </div>
         </div>
         <div class="col-4">
-          <select name="expireDate" >
-            <option>123</option>
-          </select>
+          <div :class="expireDDError ? 'input-box error' : 'input-box'">
+            <select name="expireDate"
+              :style="{color: localExpireDateDD === 'DD' ? 'gray' : 'black'}"
+              v-model="localExpireDateDD">
+              <option>DD</option>
+              <option v-for="i in 100" :key="i">{{ i }}</option>
+            </select>
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="alert four">INVALID VALUE</div>
+          </div>
         </div>
       </div>
       <button class="btn submit">SUBMIT & NEXT</button>
@@ -80,22 +103,135 @@ export default {
     return {
       msg: 'Step4',
       cardError: false,
-      bankNameError: false
+      holdNameError: false,
+      bankNameError: false,
+      CVVError: false,
+      expireMMError: false,
+      expireDDError: false
     };
   },
   computed: {
-    ...mapState(['nowStep'])
+    ...mapState(['nowStep', 'cardName', 'holdName', 'bankName',
+    'CVV', 'ExpireDateMM', 'ExpireDateDD']),
+    localCardName: {
+      get() {
+        return this.cardName;
+      },
+      set(value) {
+        this.onCardNameChange({value: value});
+      }
+    },
+    localHoldName: {
+      get() {
+        return this.holdName;
+      },
+      set(value) {
+        this.onHoldNameChange({value: value});
+      }
+    },
+    localBankName: {
+      get() {
+        return this.bankName;
+      },
+      set(value) {
+        this.onBankNameChange({value: value});
+      }
+    },
+    localCVV: {
+      get() {
+        return this.CVV;
+      },
+      set(value) {
+        this.onCVVChange({value: value});
+      }
+    },
+    localExpireDateMM: {
+      get() {
+        return this.ExpireDateMM;
+      },
+      set(value) {
+        this.onExpireDateMMChange({value: value});
+      }
+    },
+    localExpireDateDD: {
+      get() {
+        return this.ExpireDateDD;
+      },
+      set(value) {
+        this.onExpireDateDDChange({value: value});
+      }
+    },
+    validateVardNumber() {
+      let rule = /^[0-9]+$/;
+      if (rule.test(this.localCardName)) {
+        return true;
+      }
+      return false;
+    },
+    validateHolderName() {
+      if (this.localHoldName.trim() !== '') {
+        return true;
+      }
+      return false;
+    },
+    validateBankName() {
+      if (this.localBankName.trim() !== '') {
+        return true;
+      }
+      return false;
+    },
+    validateCVV() {
+      if (this.localCVV.trim() !== '') {
+        return true;
+      }
+      return false;
+    },
+    validateExpireMM() {
+      if (this.localExpireDateMM.trim() !== 'MM') {
+        return true;
+      }
+      return false;
+    },
+    validateExpireDD() {
+      if (this.localExpireDateDD.trim() !== 'DD') {
+        return true;
+      }
+      return false;
+    }
   },
   methods: {
-    ...mapMutations(['changeStep', 'completeStep']),
+    ...mapMutations(['changeStep', 'completeStep', 'onCardNameChange',
+    'onHoldNameChange', 'onBankNameChange', 'onCVVChange',
+    'onExpireDateMMChange', 'onExpireDateDDChange']),
     setErrorTime(type) {
       this.$data[type] = true;
       setTimeout(() => {
         this.$data[type] = false;
-      }, 300);
+      }, 1500);
     },
     stepFourSubmit(e) {
       e.preventDefault();
+      if (!this.validateVardNumber) {
+        this.setErrorTime('cardError');
+        return;
+      } else if (!this.validateHolderName) {
+        this.setErrorTime('holdNameError');
+        return;
+      } else if (!this.validateBankName) {
+        this.setErrorTime('bankNameError');
+        return;
+      } else if (!this.validateCVV) {
+        this.setErrorTime('CVVError');
+        return;
+      } else if (!this.validateExpireMM) {
+        this.setErrorTime('expireMMError');
+        return;
+      } else if (!this.validateExpireDD) {
+        this.setErrorTime('expireDDError');
+        return;
+      }
+      this.completeStep({step: this.nowStep});
+      this.changeStep({step: this.nowStep + 1});
     }
   }
 };

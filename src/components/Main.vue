@@ -22,6 +22,7 @@ import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import StepThree from './StepThree';
 import StepFour from './StepFour';
+import Done from './Done';
 import { mapState } from 'vuex';
 
 export default {
@@ -30,7 +31,8 @@ export default {
     StepOne,
     StepTwo,
     StepThree,
-    StepFour
+    StepFour,
+    Done
   },
   data() {
     return {
@@ -38,7 +40,8 @@ export default {
         1: 'StepOne',
         2: 'StepTwo',
         3: 'StepThree',
-        4: 'StepFour'
+        4: 'StepFour',
+        5: 'Done'
       }
     };
   },
@@ -49,6 +52,9 @@ export default {
       this.steps.forEach(item => {
         if (item.type) length += 1;
       });
+      if (length >= 4) {
+        return 3;
+      }
       return length;
     }
   }

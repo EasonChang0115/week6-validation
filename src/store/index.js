@@ -18,7 +18,13 @@ const state = {
   addressCity: '台北市',
   addressDist: '北投區',
   addressDetail: '',
-  imgFile: []
+  imgFile: [],
+  cardName: '',
+  holdName: '',
+  bankName: '',
+  CVV: '',
+  ExpireDateMM: 'MM',
+  ExpireDateDD: 'DD'
 };
 
 // store裡面的computed
@@ -77,12 +83,52 @@ const mutations = {
   onAddressDetailChange(state, { value }) {
     state.addressDetail = value;
   },
+  onCardNameChange(state, { value }) {
+    state.cardName = value;
+  },
+  onHoldNameChange(state, { value }) {
+    state.holdName = value;
+  },
+  onBankNameChange(state, { value }) {
+    state.bankName = value;
+  },
+  onCVVChange(state, { value }) {
+    state.CVV = value;
+  },
+  onExpireDateMMChange(state, { value }) {
+    state.ExpireDateMM = value;
+  },
+  onExpireDateDDChange(state, { value }) {
+    state.ExpireDateDD = value;
+  },
   addImage(state, { img }) {
     if (state.imgFile.length === 3) return;
     state.imgFile.push(img);
   },
   removeImage(state, {index}) {
     state.imgFile.splice(index, 1);
+  },
+  initAllData(state) {
+    state.nowStep = 1;
+    state.steps = [{type: false}, {type: false}, {type: false}, {type: false}];
+    state.account = '';
+    state.password = '';
+    state.confirmPassword = '';
+    state.name = '';
+    state.phone = '';
+    state.birthYear = 1990;
+    state.birthMonth = 1;
+    state.birthDate = 1;
+    state.addressCity = '台北市';
+    state.addressDist = '北投區';
+    state.addressDetail = '';
+    state.imgFile = [];
+    state.cardName = '';
+    state.holdName = '';
+    state.bankName = '';
+    state.CVV = '';
+    state.ExpireDateMM = 'MM';
+    state.ExpireDateDD = 'DD';
   }
 };
 

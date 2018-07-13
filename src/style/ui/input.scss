@@ -11,6 +11,12 @@
     top: 50%;
     left: 480px;
     transform: translateY(-50%);
+    &.three {
+      left: 320px;
+    }
+    &.four {
+      left: 160px;
+    }
     &.two {
       left: 240px;
     }
@@ -48,9 +54,13 @@
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+    &.fa-cc-visa {
+      display: block;
+      color: $color-gray;
+    }
   }
   &.error {
-    input {
+    input,select {
       border-color: $color-origin;
     }
     .alert {
@@ -58,6 +68,9 @@
     }
     i {
       display: block;
+      &.fa-cc-visa {
+        display: none;
+      }
     }
   }
 }

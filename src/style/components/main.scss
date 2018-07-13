@@ -160,3 +160,22 @@
     }
   }
 }
+
+.done {
+  .smile {
+    width: 230px;
+    height: 230px;
+    margin: 24px auto 40px;
+    i {
+      font-size: 230px;
+      color: $color-skyblue;
+    }
+  }
+  .notice {
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: $color-blue;
+  }
+}

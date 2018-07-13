@@ -227,7 +227,7 @@ export default {
       return false;
     },
     validateAddressDetail() {
-      if (!this.localAddressDetail.trim() !== '') {
+      if (this.localAddressDetail.trim() !== '') {
         return true;
       }
       return false;
@@ -246,7 +246,7 @@ export default {
     },
     stepTwoSubmit(e) {
       e.preventDefault();
-       if (!this.validatePhone) {
+      if (!this.validatePhone) {
         this.setErrorTime('phoneError');
         return;
       } else if (!this.validateAddressDetail) {
